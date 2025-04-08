@@ -29,3 +29,17 @@ function startTimer() {
     elapsedTime = 0;
     laps.innerHTML = "";
   }
+
+  function recordLap() {
+    if (elapsedTime === 0) return;
+    const lapTime = timeToString(elapsedTime);
+    const lapItem = document.createElement("li");
+    lapItem.textContent = `Lap ${laps.children.length + 1}: ${lapTime}`;
+    laps.appendChild(lapItem);
+  }
+  
+  document.getElementById("start").addEventListener("click", startTimer);
+  document.getElementById("pause").addEventListener("click", pauseTimer);
+  document.getElementById("reset").addEventListener("click", resetTimer);
+  document.getElementById("lap").addEventListener("click", recordLap);
+  
