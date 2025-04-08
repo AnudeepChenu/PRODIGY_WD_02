@@ -17,3 +17,36 @@ body {
     justify-content: center;
     height: 70vh;
   }
+
+  #display {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+  }
+  
+  .time{
+    border-color: black;
+    border-style: dashed;
+    padding: 20px;
+    border-radius: 50px;
+  }
+  .buttons{
+    width: 35vh;
+    margin-top: 8vh;
+    margin-left: 1.7vh;
+  }
+  .buttons button {
+    margin: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.2s;
+  }
+  
+  .buttons button:hover {
+    background-color: #0056b3;
+  }
