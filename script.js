@@ -11,3 +11,21 @@ function timeToString(time) {
   const ms = String(Math.floor((time % 1000) / 10)).padStart(2, "0"); // get hundredths
   return `${hrs}:${mins}:${secs}:${ms}`;
 }
+function startTimer() {
+    startTime = Date.now() - elapsedTime;
+    timerInterval = setInterval(() => {
+      elapsedTime = Date.now() - startTime;
+      display.textContent = timeToString(elapsedTime);
+    }, 10); 
+  }
+  
+  function pauseTimer() {
+    clearInterval(timerInterval);
+  }
+  
+  function resetTimer() {
+    clearInterval(timerInterval);
+    display.textContent = "00:00:00:00";
+    elapsedTime = 0;
+    laps.innerHTML = "";
+  }
