@@ -1,45 +1,45 @@
-let startTime = 0;
-let elapsedTime = 0;
+let initialTime = 0;
+let timeover= 0;
 let timerInterval;
 const display = document.getElementById("display");
 const laps = document.getElementById("laps");
 
-function timeToString(time) {
+function Time(time) {
   const hrs = String(Math.floor(time / 3600000)).padStart(2, "0");
   const mins = String(Math.floor((time % 3600000) / 60000)).padStart(2, "0");
   const secs = String(Math.floor((time % 60000) / 1000)).padStart(2, "0");
-  const ms = String(Math.floor((time % 1000) / 10)).padStart(2, "0"); // get hundredths
+  const ms = String(Math.floor((time % 1000) / 10)).padStart(2, "0"); 
   return `${hrs}:${mins}:${secs}:${ms}`;
 }
-function startTimer() {
-    startTime = Date.now() - elapsedTime;
+function startwatch() {
+  initialTime = Date.now() - timeover;
     timerInterval = setInterval(() => {
-      elapsedTime = Date.now() - startTime;
-      display.textContent = timeToString(elapsedTime);
+      timeover = Date.now() - initialTime;
+      display.textContent = Time(timeover);
     }, 10); 
   }
   
-  function pauseTimer() {
+  function pausewatch() {
     clearInterval(timerInterval);
   }
   
-  function resetTimer() {
+  function resetwatch() {
     clearInterval(timerInterval);
     display.textContent = "00:00:00:00";
-    elapsedTime = 0;
+    timeover = 0;
     laps.innerHTML = "";
   }
 
-  function recordLap() {
-    if (elapsedTime === 0) return;
-    const lapTime = timeToString(elapsedTime);
+  function Lap() {
+    if (timeover === 0) return;
+    const lapTime = Time(timeover);
     const lapItem = document.createElement("li");
     lapItem.textContent = `Lap ${laps.children.length + 1}: ${lapTime}`;
     laps.appendChild(lapItem);
   }
   
-  document.getElementById("start").addEventListener("click", startTimer);
-  document.getElementById("pause").addEventListener("click", pauseTimer);
-  document.getElementById("reset").addEventListener("click", resetTimer);
-  document.getElementById("lap").addEventListener("click", recordLap);
+  document.getElementById("start").addEventListener("click", startwatch);
+  document.getElementById("pause").addEventListener("click", pausewatch);
+  document.getElementById("reset").addEventListener("click", resetwatch);
+  document.getElementById("lap").addEventListener("click", Lap);
   
